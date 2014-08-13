@@ -1,25 +1,28 @@
-<%= form_for(@idea) do |f| %>
-  <% if @idea.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
+<div class="row">
+  <div class="col-md-8">
+  <%= simple_form_for @idea, html: {class: 'form-horizontal'} do |f| %>
 
-      <ul>
-      <% @idea.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+    <% if @idea.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
+
+        <ul>
+        <% @idea.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <%= f.input :name, :label => "Creator Name", :input_html => {:class => 'form-control'} %>
+    <%= f.input :idea_brief, :input_html => {:class => 'form-control', :size => "24x10"} %>
+    <%= f.input :idea_kind, collection: ['Video', 'Article'], :input_html => {:class => 'form-control'} %>
+    <%= f.input :idea_status, collection: ['New', 'Selected', 'On Hold', 'Rejected'], :include_blank => false, :input_html => {:class => 'form-control'} %>
+
+    <br>
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :topic %><br />
-    <%= f.text_area :topic %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

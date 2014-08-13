@@ -1,13 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>Creator Name:</b>
   <%= @idea.name %>
 </p>
 
 <p>
   <b>Topic:</b>
-  <%= @idea.topic %>
+  <%= simple_format(@idea.idea_brief) %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @idea.idea_kind %>
+</p>
+
+<p>
+  <b>Current Status</b>
+  <%= @idea.idea_status %>
 </p>
 
 

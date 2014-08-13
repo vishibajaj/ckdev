@@ -2,7 +2,20 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
-    @ideas = Idea.all
+    
+    #binding.pry
+    
+    if params[:fake].present?
+
+      if params[:fake][:all] == "1"
+        @ideas = Idea.all
+      else search_status_filters.present?
+        @ideas = Idea.where("idea_status IN (?)", search_status_filters)
+      end
+
+    else
+      @ideas = Idea.where(:idea_status => 'New').all
+  end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -79,5 +92,9 @@ class IdeasController < ApplicationController
       format.html { redirect_to ideas_url }
       format.json { head :no_content }
     end
+  end
+
+  def search_status_filters
+    params[:fake].select {|k,v| v == "1"}.keys
   end
 end

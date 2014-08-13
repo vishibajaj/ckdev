@@ -31,6 +31,10 @@ gem 'bootstrap-sass', '~> 3.2.0'
 # this gem is required for twitter bootstrap
 gem 'autoprefixer-rails'
 
+gem 'simple_form'
+
+gem 'pry-debugger'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
